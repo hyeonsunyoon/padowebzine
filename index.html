@@ -1,54 +1,156 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>index</title>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>세계권 이탈 : World Drift</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;800&display=swap');
+
+        body {
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        img {
+            width: 90vw;
+            padding: 50px;
+
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+
+        }
+        #definition {
+            position: fixed;
+            right: 20px;
+            bottom: 10px;
+
+            text-align: right;
+            font-family: "Gothic A1", serif;
+            font-weight: 900;
+            font-style: normal;
+            font-size: 36px;
+            color: gray;
+        }
+
+
+        .name {
+            position: absolute;
+
+            background-color: black;
+            color: white;
+            padding: 10px;
+
+            font-family: "Gothic A1", serif;
+            font-weight: 500;
+            font-style: normal;
+            font-size: 25px;
+        }
+        #sabin {
+            top: 300px;
+            left: 300px;
+        }
+        #hyeonsun {
+            top: 3850px;
+            right: 600px;
+        }
+        #hayoon {
+            top: 5330px;
+            right: 250px;
+        }
+
+        .folder {
+            width: 50px;
+            height: 50px;
+            background-color: lime;
+            position: absolute;
+        }
+    </style>
 </head>
 <body>
-	<div id="sidebar">
-		<iframe src="step0.html"></iframe>
-	</div>
-	
-	<div id="main">
-		<h1>Are you ready</h1>
-		<ul>
-			<li><a href="step0.html">0단계</a></li>
-			<ul>
-				<li>프로젝트 소개글</li>
-				<li>각자의 전설 그리고 탐험지역</li>
-				<li>바깥에서 바라본 이탈자들의 모습(예진님의 글)</li>
-			</ul>
+    <p id="definition">
+        세계권 이탈 : World Drift
+    </p>
 
-			<li><a href="step1.html">1단계 세계여행</a></li>
-			<ul>
-				<li>사진</li>
-				<li>일지</li>
-			</ul>
+    <img src="map_image_vert.png">
+    <p class="name" id="sabin">사빈</p>
+    <p class="name" id="hyeonsun">현선</p>
+    <p class="name" id="hayoon">하윤</p>
 
-			<li><a href="step2.html">2단계</a></li>
-			<ul>
-				<li>세계지도 벽화 이미지</li>
-				<li>제작 과정에서 나눈 우리의 이야기</li>
-			</ul>
 
-			<li><a href="step3.html">3단계</a></li>
-			<ul>
-				<li>서문</li>
-				<li>플로우맵</li>
-				<li>작품 기록(사진, 캡션 등)</li>
-			</ul>
 
-			<li><a href="step4.html">4단계</a></li>
-			<ul>
-				<li>새로운 ’앎의 방식‘ 매뉴얼 : 탐험방식 공유</li>
-				<li>확장: 워크샵 기록</li>
-			</ul>
+    <script>
+        const folderData = [
+            { url: "step0.html", name: "0단계" },
+            { url: "step1.html", name: "1단계" },
+            { url: "step2.html", name: "2단계" },
+            { url: "step3.html", name: "3단계" },
+            { url: "step4.html", name: "4단계" }
+        ];
 
-			<li>부록</li>
-		</ul>
-	</div>
-	
+        function createFolders(count) {
+            for (let i = 0; i < count; i++) {
+                let folderInfo = folderData[i % folderData.length]; // URL과 이름을 순환하여 할당
+
+                let folderContainer = document.createElement('div');
+                folderContainer.style.position = 'absolute';
+                folderContainer.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+                folderContainer.style.top = Math.random() * 5950 + 'px';
+
+                let folder = document.createElement('div');
+                folder.classList.add('folder');
+                folder.dataset.url = folderInfo.url; // URL 저장
+                
+
+                
+                folderContainer.appendChild(folder);
+
+                document.body.appendChild(folderContainer);
+
+                makeDraggable(folderContainer);
+
+                folder.addEventListener('dblclick', () => {
+                    const width = 600;
+                    const height = 400;
+                    const left = Math.random() * (window.innerWidth - width);
+                    const top = Math.random() * (window.innerHeight - height);
+
+                    window.open(folder.dataset.url, '_blank', `width=${width},height=${height},left=${left},top=${top}`);
+                });
+            }
+        }
+        
+        function makeDraggable(element) {
+            let isDragging = false;
+            let offsetX, offsetY;
+
+            element.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                offsetX = e.clientX - element.offsetLeft;
+                offsetY = e.clientY - element.offsetTop;
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    let newX = e.clientX - offsetX;
+                    let newY = e.clientY - offsetY;
+
+                    // 화면 경계를 벗어나지 않도록 제한
+                    newX = Math.max(0, Math.min(window.innerWidth - 50, newX));
+                    newY = Math.max(0, Math.min(5950, newY));
+
+                    element.style.left = newX + 'px';
+                    element.style.top = newY + 'px';
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+        }
+        
+        createFolders(20); // 20개의 네모 생성
+    </script>
 </body>
 </html>
