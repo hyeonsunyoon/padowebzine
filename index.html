@@ -8,6 +8,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;800&display=swap');
 
         body {
+            background-color: Gainsboro;
             overflow-x: hidden;
             user-select: none;
         }
@@ -19,8 +20,62 @@
             position: absolute;
             left: 50%;
             transform: translate(-50%);
-
         }
+
+        .name a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        .name a:visited {
+            color: white;
+            text-decoration: none;
+        }
+
+        .name a:hover {
+            color: yellow;
+            text-decoration: none;
+        }
+
+        .name a:active {
+            color: blue;
+            text-decoration: none;
+        }
+
+        nav {
+            font-family: "Gothic A1", serif;
+            font-weight: 100;
+            font-style: normal;
+            position: fixed;
+            left: 10px;
+            top: 10px;
+
+            z-index: 12;
+        }
+
+        nav p {
+            margin: 3px;
+            display: inline-block;
+        }
+
+        nav p a {
+            color: black;
+            text-decoration: none;
+        }
+
+        nav p a:hover {
+            color: whitesmoke;
+            text-decoration: none;
+        }
+
+        details > summary {
+            list-style: none;
+        }
+
+        details > summary:hover {
+            color: red;
+        }
+
         #definition {
             position: fixed;
             right: 20px;
@@ -65,19 +120,70 @@
             height: 50px;
             background-color: lime;
             position: absolute;
+            cursor: pointer;
         }
+
+        #forSabin {
+            top: 300px;
+            left: 600px;
+        }
+
+        #forHyeonsun {
+            top: 3800px;
+            right: 700px;
+        }
+
+        #forHayoon {
+            top: 5500px;
+            right: 400px;
+        }
+
+        @keyframes changeColor {
+            from {background-color: red;}
+            16% {background-color: yellow;}
+            32% {background-color: lime;}
+            48% {background-color: cyan;}
+            64% {background-color: blue;}
+            80% {background-color: magenta;}
+            to {background-color: red;}
+        }
+
+        .inMap:hover {
+            background-color: red;
+            animation-name: changeColor;
+            animation-duration: 30s;
+        }
+
     </style>
 </head>
 <body>
+    <nav>
+        <details>
+            <summary>see more...</summary>
+            <p><a href="step0.html">step0</a></p>
+            <p><a href="step1.html">step1</a></p>
+            <p><a href="step2.html">step2</a></p>
+            <p><a href="step3.html">step3</a></p>
+            <p><a href="step4.html">step4</a></p>
+            <P><a href="https://www.instagram.com/sa_lusio?igsh=MTl3ZjluMmN1a3RkaA==">사빈</a></P>
+            <p><a href="https://www.instagram.com/page_yunningon?igsh=ajViZnR4ZGJyaHU1">현선</a></p>
+            <p><a href="https://www.instagram.com/page_yunningon?igsh=ajViZnR4ZGJyaHU1">하윤</a></p>
+        </details>
+    </nav>
+
     <p id="definition">
         세계권 이탈 : World Drift
     </p>
 
     <img src="map_image_vert.png">
-    <p class="name" id="sabin">사빈</p>
-    <p class="name" id="hyeonsun">현선</p>
-    <p class="name" id="hayoon">하윤</p>
 
+    <p class="name" id="sabin"><a href="https://www.instagram.com/sa_lusio?igsh=MTl3ZjluMmN1a3RkaA==">사빈</a></p>
+    <p class="name" id="hyeonsun"><a href="https://www.instagram.com/page_yunningon?igsh=ajViZnR4ZGJyaHU1">현선</a></p>
+    <p class="name" id="hayoon"><a href="https://www.instagram.com/page_yunningon?igsh=ajViZnR4ZGJyaHU1">하윤</a></p>
+
+    <div class="folder inMap" id="forSabin"></div>
+    <div class="folder inMap" id="forHyeonsun"></div>
+    <div class="folder inMap" id="forHayoon"></div>
 
 
     <script>

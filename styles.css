@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;800&display=swap');
+
 * {
 
     margin: 0;
@@ -6,25 +9,57 @@
     font-size: 100%;
 }
 
-@font-face {
-    font-family: 'GothicA1-Light';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/GothicA1-Light.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-}
 
 body {
-    font-family: monospace;
+    margin: auto;
+    padding: 30px;
+    max-width: 600px;
+
+    background-color: gainsboro;
+
+    font-family: "Gothic A1", serif;
+    font-weight: 500;
+    font-style: normal;
 
     font-size: 16px;
     line-height: 1.7;
-    background-image: url(cloud.jpg);
-    background-size: 300px;
-    background-repeat: repeat;
-
 }
 
 
 h1 {
     font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+footer {
+    text-align: center;
+}
+
+#linkToMain a {
+    color: red;
+    text-decoration: none;
+}
+
+#linkToMain a:hover {
+    color: yellow;
+    text-decoration: none;
+}
+
+#yejin {
+    text-align: right;
 }
